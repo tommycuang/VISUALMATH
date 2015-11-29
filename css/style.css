@@ -52,3 +52,6 @@ a{
 #one{
 	border-bottom: 2px black double;
 }
+canvas{
+	padding:10px;
+}

@@ -16,7 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -36,6 +36,7 @@
 			margin:5px auto;
 		}
 	</style>
+    <script src="libs/three.js"></script>
 </head>
 
 <body>
@@ -67,7 +68,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse" >
                 <ul class="nav navbar-nav side-nav" style="padding:13px 0 0 0;">
-                    <li>
+                    <li class="active">
                         <a href="index.html"><i class="fa fa-fw"></i>Home</a>
                     </li>
                     <li>
@@ -93,7 +94,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#tri"><i class="fa fa-fw fa-arrows-v"></i> Trigonometri <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="tri" class="collapse">
                             <li>
@@ -131,30 +132,11 @@
 			         </div>
                 </div>
                 <div class="row" id="isi">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <h1><span class="label label-default">Trigonometri</span></h1>
-                        <h3>Trigonometri merupakan nilai perbandingan yang didefinisikan pada koordinat kartesius atau segitiga siku-siku.</h3>
-                        <h3 style="margin-left:50px">Trigonometri didefinisikan dalam segitiga siku-siku adalah sebagai berikut</h3>
-                        <div style="margin-left:100px">
-                            <img src="image/segitiga.png">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="tigad">
+                            
                         </div>
-                        <h3 style="margin-left:50px">Nilai trigonometri untuk sudut-sudut istimewa</h3>
-                        <div style="margin-left:100px">
-                            <img src="image/sudut%20istimewa.png">
-                        </div>
-                        <h3 style="margin-left:50px">Rumus-rumus identitas trigonometri</h3>
-                        <div style="margin-left:100px">
-                            <img src="image/rumus%20identitas.png">
-                        </div>
-                        <h3 style="margin-left:50px">Rumus-rumus trigonometri</h3>
-                        <div style="margin-left:100px">
-                            <img src="image/rumus%20trigonometri.png">
-                        </div>
-                        <h3 style="margin-left:50px">Aturan trigonometri dalam segitiga</h3>
-                        <div style="margin-left:100px">
-                            <img src="image/aturan%20trigonometri.png">
-                        </div>
-                     </div>   
+                    </div>
                 </div>
                 <div class="row" id="footer">
                     <div class="col-lg-5 col-md-5 col-sm-5"></div>
@@ -172,6 +154,57 @@
         <!-- /#page-wrapper -->
 
     </div>
+    <!--Load config JS-->
+    <script>
+        // global variables
+        var renderer;
+        var scene;
+        var camera;
+        var isi = document.getElementById("tigad");
+        function init() {
+    
+            var isi = document.getElementById("tigad");
+            // create a scene, that will hold all our elements such as objects, cameras and lights.
+            scene = new THREE.Scene();
+    
+            // create a camera, which defines where we're looking at.
+            camera = new THREE.PerspectiveCamera(60, document.getElementById("isi").offsetWidth / 300, 0.1, 1000);
+    
+            // create a render, sets the background color and the size
+            renderer = new THREE.WebGLRenderer();
+            renderer.setClearColor(0x000000, 1.0);
+            renderer.setSize(document.getElementById("isi").offsetWidth,300);
+            // create a cube and add to scene
+            var cubeGeometry = new THREE.BoxGeometry(10, 10, 10);
+            var cubeMaterial = new THREE.MeshNormalMaterial();
+            var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.name = 'cube';
+            scene.add(cube);
+    
+            // position and point the camera to the center of the scene
+            camera.position.x = 15;
+            camera.position.y = 16;
+            camera.position.z = 13;
+            camera.lookAt(scene.position);
+    
+            // add the output of the renderer to the html element
+            document.body.appendChild(renderer.domElement);
+    
+            // call the render function
+            render();
+            isi.appendChild(renderer.domElement);
+        }
+    
+        function render() {
+            renderer.render(scene, camera);
+            scene.getObjectByName('cube').rotation.x += 0.005;
+            scene.getObjectByName('cube').rotation.y += 0.005;
+            requestAnimationFrame(render);
+        }
+    
+        // calls the init function when the window is done loading.
+        window.onload = init;
+    </script>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -179,9 +212,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet">
     
-    <!--Load config JS-->
-    <script src="js/index.js"></script>
 </body>
 
 </html>
