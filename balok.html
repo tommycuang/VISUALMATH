@@ -138,17 +138,17 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12" id="tigad">
                             <h1><span class="label label-default">Kubus</span></h1>
-                            <h3>Kubus merupakan suatu bangun 3 dimensi yang mempunya 6 sisi yang mempunyai luas yang sama.</h3>
-                            <h3>Elemen-elemen yang terdapat pada kubus: </h3>
+                            <h3>Balok merupakan suatu bangun 3 dimensi.</h3>
+                            <h3>Karakteristik yang terdapat pada balok: </h3>
                             <h3>- Terdapat 12 rusuk</h3>
                             <h3>- Terdapat 6 sisi</h3>
-                            <h3>- Setiap sisi memiliki luas yang sama</h3>
-                            <h3>Rumus-rumus yang terdapat pada kubus</h3>
-                            <h3 style="text-align:center;">Volume = R*R*R</h3>
-                            <h3 style="text-align:center;">Luas Permukaan = 6*R*R</h3>
-                            <h3 style="text-align:center;">Diagonal Ruang = R*SQRT(3)</h3>
-                            <h3 style="text-align:center;">  dimana: R = Rusuk, SQRT = akar pangkat dua</h3>
-                            <h3>Berikut merupakan Visualisasi dari Kubus:</h3>
+                            <h3>- Terdapat 3 pasang sisi yang memiliki luas yang sama</h3>
+                            <h3>Rumus-rumus yang terdapat pada Balok</h3>
+                            <h3 style="text-align:center;">Volume = P*L*T</h3>
+                            <h3 style="text-align:center;">Luas Permukaan = 2*(P*L+P*T+L*T)</h3>
+                            <h3 style="text-align:center;">Diagonal Ruang = SQRT(P*P+L*L+T*T)</h3>
+                            <h3 style="text-align:center;">  dimana: P = Panjang, L = Lebar, T = Tinggi, SQRT = akar pangkat dua</h3>
+                            <h3>Berikut merupakan Visualisasi dari Balok:</h3>
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
             renderer.setClearColor(0x000000, 1.0);
             renderer.setSize(document.getElementById("isi").offsetWidth,300);
             // create a cube and add to scene
-            var cubeGeometry = new THREE.BoxGeometry(10, 10, 10);
+            var cubeGeometry = new THREE.BoxGeometry(20, 10, 8);
             var cubeMaterial = new THREE.MeshNormalMaterial();
             var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
             cube.name = 'cube';
