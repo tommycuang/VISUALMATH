@@ -1,0 +1,54 @@
+
+
+#logo{
+	width:400px;
+	height:155px;
+	display:inline;
+}
+.jumbotron{
+	background-color: white;
+	padding:30px 0 0 0 ;
+	margin:0px;
+}
+#cari{
+	width:50%;
+	margin:0px;
+	display:inline;
+}
+#kolom-pencarian{
+	margin:5% 0 0 0;
+}
+h3{
+	font-weight:bold;
+    text-align: justify;
+}
+a{
+	color:green;
+	font-weight: bold;
+}
+#footer{
+	width:100%;
+	height:40px;
+    margin: 20px 0 0 0;
+	padding:0px;
+	background-color: brown;
+}
+#copyright{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+}
+.label {
+    background-color: green;
+}
+.top-nav{
+	width:300px;
+}
+#page-wrapper{
+	margin:50px 0 0 0;
+	background-image:url("../image/main_background.png");
+}
+#one{
+	border-bottom: 2px black double;
+}
