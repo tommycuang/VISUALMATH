@@ -137,22 +137,21 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12" id="tigad">
-                            <h1><span class="label label-default">Balok</span></h1>
-                            <h3>Balok merupakan suatu bangun 3 dimensi.</h3>
-                            <h3>Karakteristik yang terdapat pada balok: </h3>
-                            <h3>- Balok merupakan bangun ruang yang dibatasi 6 persegi panjang dimana 3 persegi panjang kongruen.</h3>
-                            <h3>- Balok mempunyai 6 sisi berbentuk persegi panjang.</h3>
-                            <h3>- Balok mempunyai 3 pasang bidang sisi berhadapan yang kongruen.</h3>
-                            <h3>- Balok mempunyai 12 rusuk.</h3>
-                            <h3>- 4 buah rusuk yang sejajar sama panjang.</h3>
-                            <h3>- Balok mempunyai 8 titik sudut.</h3>
-                            <h3>- Jaring-jaring balok berupa 6 buah persegi panjang.</h3>
-                            <h3>Rumus-rumus yang terdapat pada Balok</h3>
-                            <h3 style="text-align:center;">Volume = P*L*T</h3>
-                            <h3 style="text-align:center;">Luas Permukaan = 2*(P*L+P*T+L*T)</h3>
-                            <h3 style="text-align:center;">Diagonal Ruang = SQRT(P*P+L*L+T*T)</h3>
-                            <h3 style="text-align:center;">  dimana: P = Panjang, L = Lebar, T = Tinggi, SQRT = akar pangkat dua</h3>
-                            <h3>Berikut merupakan Visualisasi dari Balok:</h3>
+                            <h1><span class="label label-default">Bola</span></h1>
+                            <h3>Bola merupakan suatu bangun 3 dimensi yang berbentuk melingkar.</h3>
+                            <h3>Karakteristik yang terdapat pada bola: </h3>
+                            <h3>- Bola merupakan bangun ruang berbentuk setengah lingkaran diputar mengelilingi garis tengahnya.</h3>
+                            <h3>- Bola mempunyai 1 sisi dan 1 titik pusat.</h3>
+                            <h3>- Sisi bola disebut dinding bola.</h3>
+                            <h3>- Bola tidak mempunyai titik sudut dan rusuk.</h3>
+                            <h3>- Jarak dinding ke titik pusat bola disebut jari-jari.</h3>
+                            <h3>- Jarak dinding ke dinding dan melewati titik pusat disebut diameter.</h3>
+                            <h3>Rumus-rumus yang terdapat pada Bola</h3>
+                            <h3 style="text-align:center;">Volume = 4 * (&#928; * R * R) / 3</h3>
+                            <h3 style="text-align:center;">Luas Permukaan = 4 * &#928; * R * R</h3>
+                            <h3 style="text-align:center;">Diameter = 2 * R</h3>
+                            <h3 style="text-align:center;">  dimana: &#928; = phi = 22/7, R = jari-jari</h3>
+                            <h3>Berikut merupakan Visualisasi dari Bola:</h3>
                         </div>
                     </div>
                 </div>
@@ -179,12 +178,22 @@
         var scene;
         var camera;
         var isi = document.getElementById("tigad");
+        var geometry   = new THREE.SphereGeometry(10, 64, 64);
+        var material  = new THREE.MeshPhongMaterial();
+        material.map    = THREE.ImageUtils.loadTexture('image/map-bola.jpg');
+        var bola = new THREE.Mesh(geometry, material);
+        scene = new THREE.Scene();
+        scene.add(new THREE.AmbientLight(0x333333));
+        
+        var light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5,3,5);
+        scene.add(light);
+        scene.add(bola);
         function init() {
     
             var isi = document.getElementById("tigad");
             // create a scene, that will hold all our elements such as objects, cameras and lights.
-            scene = new THREE.Scene();
-    
+           
             // create a camera, which defines where we're looking at.
             camera = new THREE.PerspectiveCamera(60, document.getElementById("isi").offsetWidth / 300, 0.1, 1000);
     
@@ -193,11 +202,7 @@
             renderer.setClearColor(0x000000, 1.0);
             renderer.setSize(document.getElementById("isi").offsetWidth,300);
             // create a cube and add to scene
-            var cubeGeometry = new THREE.BoxGeometry(20, 10, 8);
-            var cubeMaterial = new THREE.MeshNormalMaterial();
-            var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-            cube.name = 'cube';
-            scene.add(cube);
+            
     
             // position and point the camera to the center of the scene
             camera.position.x = 15;
@@ -215,8 +220,8 @@
     
         function render() {
             renderer.render(scene, camera);
-            scene.getObjectByName('cube').rotation.x += 0.005;
-            scene.getObjectByName('cube').rotation.y += 0.005;
+            bola.rotation.x += 0.005;
+            bola.rotation.y += 0.005;
             requestAnimationFrame(render);
         }
     
