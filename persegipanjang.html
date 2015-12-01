@@ -16,7 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -26,7 +26,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+		.gbr{
+			height:200px;
+			width:200px;
+            padding: 5px 5px 0px 5px;
+		}
+		.btn-bwh{
+			margin:5px auto;
+		}
+	</style>
+    <script src="libs/three.js"></script>
 </head>
 
 <body>
@@ -121,21 +131,25 @@
                         </div>
 			         </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <h1><span class="label label-default">VisualMath</span></h1>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <h3>
-                                VisualMath merupakan suatu website yang mendukung pembahasan rumus-rumus dan
-                                visualisasi geometri dan trigonometri untuk memudahkan para peminat dunia edukasi.
-                            </h3>
-                            <h3>
-                                Di website “VisualMath” ini, para pengguna akan mendapatkan fasilitas seperti pembelajaran online. 
-                                Pembelajaran online itu nantinya berisi pembahasan mengenai rumus-rumus geometri dan trigonometri. Selain itu, pengguna juga dapat melihat berbagai bentuk dari geometri dan trigonometri. Pengguna dapat memasukkan input ke website dan website akan mengeluarkan hasil dari visualisasinya dalam bentuk tiga dimensi ataupun dua dimensi. 
-                            </h3>
-                            <br>
-                            <a href="geometri.html" style="color:white;"><button type="button" class="btn btn-success btn-block" style="font-weight:bold;">Geometri</button></a>	
-                            <a href="trigonometri.html" style="color:white;"><button type="button" class="btn btn-success btn-block" style="font-weight:bold;">Trigonometri</button></a>
+                <div class="row" id="isi">
+                    <div class="row">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="tigad">
+                            <h1><span class="label label-default">Persegi Panjang</span></h1>
+                            <h3>Persegi Panjang adalah bangun datar dua dimensi yang dibentuk oleh dua pasang rusuk yang masing-masing sama panjang dan sejajar dengan pasangannya.</h3>
+                            <h3>Karakteristik yang terdapat pada persegi: </h3>
+                            <h3>- Terdiri dari 2 pasang rusuk (masing-masing sama panjang)</h3>
+                            <h3>- Terdapat 4 sudut (masing-masing 90 derajat)</h3>
+                            <h3>- Rusuk terpanjang disebut panjang (p)</h3>
+                            <h3>- Rusuk terpendek disebut lebar (l)</h3>
+                            <h3>Rumus-rumus yang terdapat pada persegi panjang</h3>
+                            <h3 style="text-align:center;">Luas (L) = p*l</h3>
+                            <h3 style="text-align:center;">Keliling (K) = 2*(p+l)</h3>
+                            <h3 style="text-align:center;">Diagonal bidang (d) = SQRT(p^2 + l^2)</h3>
+                            <h3 style="text-align:center;">  dimana: p = panjang; l = lebar</h3>
+                            <h3>Berikut merupakan Visualisasi dari Persegi Panjang:</h3>
                         </div>
                     </div>
                 </div>
@@ -155,6 +169,57 @@
         <!-- /#page-wrapper -->
 
     </div>
+    <!--Load config JS-->
+    <script>
+        // global variables
+        var renderer;
+        var scene;
+        var camera;
+        var isi = document.getElementById("tigad");
+        function init() {
+    
+            var isi = document.getElementById("tigad");
+            // create a scene, that will hold all our elements such as objects, cameras and lights.
+            scene = new THREE.Scene();
+    
+            // create a camera, which defines where we're looking at.
+            camera = new THREE.PerspectiveCamera(60, document.getElementById("isi").offsetWidth / 500, 0.1, 1000);
+    
+            // create a render, sets the background color and the size
+            renderer = new THREE.WebGLRenderer();
+            renderer.setClearColor(0x000000, 1.0);
+            renderer.setSize(document.getElementById("isi").offsetWidth,300);
+            // create a cube and add to scene
+            var cubeGeometry = new THREE.BoxGeometry(10, 10, 10);
+            var cubeMaterial = new THREE.MeshNormalMaterial();
+            var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.name = 'cube';
+            scene.add(cube);
+    
+            // position and point the camera to the center of the scene
+            camera.position.x = 15;
+            camera.position.y = 0;
+            camera.position.z = 0;
+            camera.lookAt(scene.position);
+    
+            // add the output of the renderer to the html element
+            document.body.appendChild(renderer.domElement);
+    
+            // call the render function
+            render();
+            isi.appendChild(renderer.domElement);
+        }
+    
+        function render() {
+            renderer.render(scene, camera);
+            // scene.getObjectByName('cube').rotation.x += 0.005;
+            // scene.getObjectByName('cube').rotation.y += 0.005;
+            requestAnimationFrame(render);
+        }
+    
+        // calls the init function when the window is done loading.
+        window.onload = init;
+    </script>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -162,7 +227,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+    <link href="css/style.css" rel="stylesheet">
+    
 </body>
 
 </html>
